@@ -1,24 +1,23 @@
-# 广东工商职业技术大学Alistun战队26赛季自瞄算法(基于同济大学SuperPower战队25赛季自瞄算法开源二次开发)
+# 广东工商职业技术大学Alistun战队26赛季自瞄算法
+    (基于同济大学SuperPower战队25赛季自瞄算法开源二次开发)
 # 海康摄像头版
 相机型号：海康MV-CS016-10UC
 镜头型号：海康官方6mm镜头
 # 环境配置
 
-| **操作系统** | Ubuntu 22.04 |
-| **GCC** | 11.4.0 | 
-| **CMake** | 3.22.1 | 
-| **OpenCV** | 4.8.0 | 
-| **Eigen3** | 3.4.0 | 
-| **fmt** | 8.1.1 | 
-| **spdlog** | 1.9.2 | 
-| **yaml-cpp** | 0.7.0 | 
-| **libusb** | 1.0.25 | 
-| **can-utils** | 已安装 | 
-| **OpenVINO** | 2025.3.0 | 
-| **Ceres** | 2.0.0 |
-[HikRobot SDK] https://www.hikrobotics.com/cn/machinevision/service/download/?module=0
+- | **操作系统** | Ubuntu 22.04 |
+- | **GCC** | 11.4.0 | 
+- | **CMake** | 3.22.1 | 
+- | **OpenCV** | 4.8.0 | 
+- | **Eigen3** | 3.4.0 | 
+- | **yaml-cpp** | 0.7.0 | 
+- | **libusb** | 1.0.25 |  
+- | **OpenVINO** | 2025.3.0 | 
+- | **Ceres** | 2.0.0 |
+- [HikRobot SDK] https://www.hikrobotics.com/cn/machinevision/service/download/?module=0
 
 其余：
+
     ```bash
     sudo apt install -y \
         git \
@@ -40,11 +39,14 @@
 
 
 ### 编译 ###
-build:（sp25 V0.1/sp_vision_25-main路径下）：
+build:（Alistun26_vision_hk路径下）：
 
+```bash
 rm -rf build
 cmake -B build .
 make -C build -j$(nproc)
+```
+
 
 
 ### 文件结构
@@ -58,22 +60,23 @@ configs/standard_serial.yaml
 
 ### 启动 ###
 
-# 视觉编译完开启（在sp V0.1路径下）
-pkill -f mt_standard; cd Alistun25_vision_hk/build && make -j4 && ./mt_standard ../configs/standard_serial.yaml
+# 视觉编译完开启（在Alistun26_vision路径下）
+    pkill -f mt_standard; cd Alistun26_vision_hk/build && make -j4 && ./mt_standard ../configs/standard_serial.yaml
 
 # 已经开启视觉过再次开启指令（在build路径下）：
-./mt_standard ../configs/standard_serial.yaml
+    ./mt_standard ../configs/standard_serial.yaml
 
 
-查看当前c板串口号：  ls -la /dev/ttyACM*| head -5
-***(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun25_vision/Alistun25_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" ) ***
+- 查看当前c板串口号：  ls -la /dev/ttyACM*| head -5
+
+*(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun26_vision/Alistun26_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" )*
 
 查看当前电脑usb设备数: lsusb  (查看相机和c板是否已经连接上电脑)
 
 
 -----------------------------------------------------------------------------------------------------------------------
 
-### 上位机与C板之间的串口通信协议
+### 上位机与C板之间的串口通信协议 ###
 
 **注意**：本项目所有数据通过 USB 虚拟串口（如 `/dev/ttyACM0`）传输。
 
@@ -136,15 +139,19 @@ pkill -f mt_standard; cd Alistun25_vision_hk/build && make -j4 && ./mt_standard 
 ------------------------------------------------------------------------------------------------------------------------
 
 # 相机标定使用:
-calibration/calibrate_camera.cpp
-calibration/calibrate_robotworld_handeye.cpp
 
-*分别拍摄50张图片左右进行标定*
+    使用：calibration\capture.cpp 进行拍照
+
+*两个程序分别拍摄50张图片左右进行标定*
+
+- 自动标定程序：
+    calibration/calibrate_camera.cpp (云台动，标定板不动)
+    calibration/calibrate_robotworld_handeye.cpp （标定板动，云台不动）
+
+*拍摄的照片会在\assets\img_with_q目录下*
 
 
-
-
-### 开机自启动服务 ###
+# 开机自启动服务 ###
 
 首次使用时，必须先安装并启用服务：
 在Alistun25_vision路径下:
@@ -157,17 +164,17 @@ sudo ./install_alistun_service.sh
 
 安装成功后，使用以下命令管理服务：
 
-# 查看运行状态
+## 查看运行状态
     sudo systemctl status alistun_vision.service
-# 启动程序
+## 启动程序
     sudo systemctl start alistun_vision.service
-# 停止程序
+## 停止程序
     sudo systemctl stop alistun_vision.service
-# 重启程序
+## 重启程序
     sudo systemctl restart alistun_vision.service
-# 实时查看程序输出日志
+## 实时查看程序输出日志
     sudo journalctl -u alistun_vision.service -f
-# 取消开机自启动并立即停止程序
+## 取消开机自启动并立即停止程序
     sudo systemctl disable --now alistun_vision.service
 
 
