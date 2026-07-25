@@ -1,4 +1,5 @@
-# 广东工商职业技术大学Alistun战队26赛季自瞄算法(基于同济大学SuperPower战队25赛季自瞄算法开源二次开发)
+# 广东工商职业技术大学Alistun战队26赛季自瞄算法
+    (基于同济大学SuperPower战队25赛季自瞄算法开源二次开发)
 # 海康摄像头版
 相机型号：海康MV-CS016-10UC
 镜头型号：海康官方6mm镜头
@@ -41,7 +42,7 @@
 
 
 ### 编译 ###
-build:（sp25 V0.1/sp_vision_25-main路径下）：
+build:（Alistun26_vision_hk路径下）：
 
 ```bash
 rm -rf build
@@ -62,15 +63,15 @@ configs/standard_serial.yaml
 
 ### 启动 ###
 
-# 视觉编译完开启（在sp V0.1路径下）
-    pkill -f mt_standard; cd Alistun25_vision_hk/build && make -j4 && ./mt_standard ../configs/standard_serial.yaml
+# 视觉编译完开启（在Alistun26_vision路径下）
+    pkill -f mt_standard; cd Alistun26_vision_hk/build && make -j4 && ./mt_standard ../configs/standard_serial.yaml
 
 # 已经开启视觉过再次开启指令（在build路径下）：
     ./mt_standard ../configs/standard_serial.yaml
 
 
 查看当前c板串口号：  ls -la /dev/ttyACM*| head -5
-***(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun25_vision/Alistun25_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" ) ***
+***(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun26_vision/Alistun26_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" ) ***
 
 查看当前电脑usb设备数: lsusb  (查看相机和c板是否已经连接上电脑)
 
