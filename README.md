@@ -141,12 +141,16 @@ configs/standard_serial.yaml
 ------------------------------------------------------------------------------------------------------------------------
 
 # 相机标定使用:
-calibration/calibrate_camera.cpp
-calibration/calibrate_robotworld_handeye.cpp
 
-*分别拍摄50张图片左右进行标定*
+使用：calibration\capture.cpp 进行拍照
 
+*两个程序分别拍摄50张图片左右进行标定*
 
+自动标定程序，
+calibration/calibrate_camera.cpp (云台动，标定板不动)
+calibration/calibrate_robotworld_handeye.cpp （标定板动，云台不动）
+
+*拍摄的照片会在\assets\img_with_q目录下*
 
 
 ### 开机自启动服务 ###
