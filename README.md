@@ -70,8 +70,9 @@ configs/standard_serial.yaml
     ./mt_standard ../configs/standard_serial.yaml
 
 
-查看当前c板串口号：  ls -la /dev/ttyACM*| head -5
-***(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun26_vision/Alistun26_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" ) ***
+- 查看当前c板串口号：  ls -la /dev/ttyACM*| head -5
+
+*(c板复位后串口号会变动，需重新查看修改,修改路径在:Alistun26_vision/Alistun26_vision_hk/configs/standard_serial.yaml里的serial_port: "/dev/ttyACM0" )*
 
 查看当前电脑usb设备数: lsusb  (查看相机和c板是否已经连接上电脑)
 
