@@ -5,18 +5,15 @@
 镜头型号：海康官方6mm镜头
 # 环境配置
 
-| **操作系统** | Ubuntu 22.04 |
-| **GCC** | 11.4.0 | 
-| **CMake** | 3.22.1 | 
-| **OpenCV** | 4.8.0 | 
-| **Eigen3** | 3.4.0 | 
-| **fmt** | 8.1.1 | 
-| **spdlog** | 1.9.2 | 
-| **yaml-cpp** | 0.7.0 | 
-| **libusb** | 1.0.25 | 
-| **can-utils** | 已安装 | 
-| **OpenVINO** | 2025.3.0 | 
-| **Ceres** | 2.0.0 |
+-| **操作系统** | Ubuntu 22.04 |
+-| **GCC** | 11.4.0 | 
+-| **CMake** | 3.22.1 | 
+-| **OpenCV** | 4.8.0 | 
+-| **Eigen3** | 3.4.0 | 
+-| **yaml-cpp** | 0.7.0 | 
+-| **libusb** | 1.0.25 |  
+-| **OpenVINO** | 2025.3.0 | 
+-| **Ceres** | 2.0.0 |
 [HikRobot SDK] https://www.hikrobotics.com/cn/machinevision/service/download/?module=0
 
 其余：
