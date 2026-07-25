@@ -1,0 +1,26 @@
+pattern_cols: 10
+pattern_rows: 7
+center_distance_mm: 40
+
+R_gimbal2imubody: [1, 0, 0, 
+                    0, 1, 0,  
+                    0, 0, 1]
+
+camera_name: "mindvision"
+exposure_ms: 10
+gain: 15.0
+vid_pid: "2bdf:0001"
+mv_exposure_ms: 20
+mv_gamma: 1.0
+mv_gain: 10.0
+mv_wb_r: 100
+mv_wb_g: 88
+mv_wb_b: 66
+
+#####-----cboard参数-----#####
+serial_port: "/dev/ttyACM0"
+serial_baud: 115200
+quaternion_canid: 0x01
+bullet_speed_canid: 0x110
+send_canid: 0xff
+# can_interface: ""  # CAN disabled

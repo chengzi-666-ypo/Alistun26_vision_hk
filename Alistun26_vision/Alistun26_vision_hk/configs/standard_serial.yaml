@@ -1,0 +1,125 @@
+enemy_color: "red"
+#enemy_color: "blue"
+
+#####-----神经网络参数-----#####
+yolo_name: yolov5
+classify_model: ../assets/tiny_resnet.onnx
+yolo11_model_path: ../assets/yolo11.xml
+yolov8_model_path: ../assets/yolov8.xml
+yolov5_model_path: ../assets/yolov5.xml
+device: CPU
+min_confidence: 0.40
+use_traditional: true
+
+#####-----ROI-----#####
+roi: 
+  x: 420
+  y: 50
+  width: 600
+  height: 600
+
+use_roi: false
+
+#####-----传统方法参数-----#####
+threshold: 150
+max_angle_error: 45 # degree
+min_lightbar_ratio: 1.5
+max_lightbar_ratio: 20
+min_lightbar_length: 8
+min_armor_ratio: 1
+max_armor_ratio: 5
+max_side_ratio: 1.5
+max_rectangular_error: 25 # degree
+
+#####-----tracker参数-----#####
+min_detect_count: 5
+max_temp_lost_count: 15
+outpost_max_temp_lost_count: 75
+
+#####-----aimer参数-----#####
+yaw_offset: -4.00 # degree -2.5 左正右负
+pitch_offset: 2.00 # degree 2 
+comming_angle: 55 # degree
+leaving_angle: 20 # degree
+decision_speed: 3 # rad/s
+high_speed_delay_time: 0.10 # s 降低延迟时间使预测不那么激进
+low_speed_delay_time: 0.10 # s planner use this value
+
+#####-----shooter参数-----#####
+first_tolerance: 10 # 近距离射击容差，degree
+second_tolerance: 6 # 远距离射击容差，degree
+judge_distance: 2 #距离判断阈值
+auto_fire: true # 是否由自瞄控制射击
+
+camera_name: "hikrobot"
+exposure_ms: 5.0
+gain: 13.0
+gamma: 1.0
+vid_pid: "2bdf:0001"
+
+# ----- MindVision 专用相机参数 -----
+mv_exposure_ms: 25.0   # 曝光时间 (ms)
+mv_gain: 10.0          # 模拟增益 (倍数/步进)，根据需要调大或调小
+mv_gamma: 0.9         # Gamma值
+mv_wb_r: 100          # 红色增益 (0-200) 默认约100，增加可让画面偏暖红
+mv_wb_g: 80          # 绿色增益 (0-200) 默认约100
+mv_wb_b: 66          # 蓝色增益 (0-200) 默认约100，减小可减少冷色调
+
+#  1  0  0
+#  0  1  0
+#  0  0  1
+
+# 重投影误差: 0.1568px  （2）
+camera_matrix: [2280.3214560159763, 0, 772.39165473529499, 0, 2282.6320185277241, 647.52075990731907, 0, 0, 1]
+distort_coeffs: [-0.052805138313858635, 0.14629132450321614, 0.0046808292665249957, 0.0033353442776521474, 0]  
+
+
+R_gimbal2imubody: [0, 1, 0, -1, 0, 0, 0, 0, -1]
+
+# 相机同理想情况的偏角: yaw-2.08 pitch-0.38 roll1.05 degree
+# 标定板到世界坐标系原点的水平距离: 2.98 m
+# 标定板同竖直摆放时的偏角: yaw1.88 pitch-1.01 roll0.94 degree
+R_camera2gimbal: [0.036167113715232062, -0.0073716837506278363, 0.99931856690656473, -0.99917709293280754, 0.01810443028822983, 0.03629554466160264, -0.018359652607095777, -0.99980892568661317, -0.0067108325509884232]
+t_camera2gimbal: [0.4876073333927563, 0.093411361718711269, 0.052132510358811335]
+
+
+
+
+#####-----cboard参数-----#####
+quaternion_canid: 0x100
+bullet_speed_canid: 0x101
+send_canid: 0xff
+# can_interface: "can0" # 禁用 CAN
+serial_port: "/dev/ttyACM0" # 启用串口
+serial_baud: 115200
+
+#####-----gimbal参数-----#####
+com_port: "/dev/gimbal"
+yaw_kp: 0
+yaw_kd: 0
+pitch_kp: 0
+pitch_kd: 0
+
+#####-----planner-----#####
+fire_thresh: 0.0035
+
+max_yaw_acc: 50
+Q_yaw: [9e6, 0]
+R_yaw: [1]
+
+max_pitch_acc: 100
+Q_pitch: [9e6, 0]
+R_pitch: [1]
+
+#####-----buff_detector参数-----#####
+model: "../assets/yolo11_buff_int8.xml"
+
+#####-----buff_aimer参数-----#####
+buff_yaw_offset: -2.0   # degree 左正右负
+buff_pitch_offset: 0.2  # degree
+fire_gap_time: 0.006   # s
+predict_time: 0.930     # s
+yaw_direction: 1.0      # 1.0 or -1.0
+pitch_direction: 1.0    # 1.0 or -1.0
+smooth_factor: 0.9      # 滤波系数 (0~1)，越小越平滑但滞后越大
+max_speed: 10.0          # 最大旋转速度 rad/s
