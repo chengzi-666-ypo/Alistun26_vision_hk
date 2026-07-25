@@ -19,6 +19,7 @@
 [HikRobot SDK] https://www.hikrobotics.com/cn/machinevision/service/download/?module=0
 
 其余：
+
     ```bash
     sudo apt install -y \
         git \
