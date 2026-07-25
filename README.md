@@ -153,7 +153,7 @@ configs/standard_serial.yaml
 *拍摄的照片会在\assets\img_with_q目录下*
 
 
-### 开机自启动服务 ###
+# 开机自启动服务 ###
 
 首次使用时，必须先安装并启用服务：
 在Alistun25_vision路径下:
@@ -166,17 +166,17 @@ sudo ./install_alistun_service.sh
 
 安装成功后，使用以下命令管理服务：
 
-# 查看运行状态
+## 查看运行状态
     sudo systemctl status alistun_vision.service
-# 启动程序
+## 启动程序
     sudo systemctl start alistun_vision.service
-# 停止程序
+## 停止程序
     sudo systemctl stop alistun_vision.service
-# 重启程序
+## 重启程序
     sudo systemctl restart alistun_vision.service
-# 实时查看程序输出日志
+## 实时查看程序输出日志
     sudo journalctl -u alistun_vision.service -f
-# 取消开机自启动并立即停止程序
+## 取消开机自启动并立即停止程序
     sudo systemctl disable --now alistun_vision.service
 
 
